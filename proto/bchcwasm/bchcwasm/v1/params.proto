@@ -1,0 +1,13 @@
+syntax = "proto3";
+package bchcwasm.bchcwasm.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "bchcwasm/x/bchcwasm/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "bchcwasm/x/bchcwasm/Params";
+  option (gogoproto.equal) = true;
+}
