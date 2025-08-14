@@ -1,0 +1,15 @@
+[package]
+name = "empty-contract"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+cosmwasm-std = "1.5.11"
+base64ct = "=1.7.3"
+serde = { version = "1.0.103", default-features = false, features = ["derive"] }
+
+[dev-dependencies]
+cw-multi-test = "0.13.4"

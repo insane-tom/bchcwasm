@@ -1,0 +1,1 @@
+1282af963295fb0ceff1c7e263aef336a16f6815a9fa974d3f015591f11a922d  hello_contract.wasm

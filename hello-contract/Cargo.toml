@@ -1,0 +1,15 @@
+[package]
+name = "hello-contract"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cosmwasm-std = "1.5"
+base64ct = "=1.7.3"
+serde = { version = "1.0", features = ["derive"] }
+
+[features]
+default = []
