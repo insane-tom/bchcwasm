@@ -1,0 +1,18 @@
+use cosmwasm_std::Addr;
+use schemars::JsonSchema;
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct InstantiateMsg {}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub enum ExecuteMsg {
+    CreatePatient { name: String, age: u8, disease: String },
+    GrantAccess { patient_id: u64, addr: String },
+    RevokeAccess { patient_id: u64, addr: String },
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub enum QueryMsg {
+    GetPatient { patient_id: u64 },
+}
