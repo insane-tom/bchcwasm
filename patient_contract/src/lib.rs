@@ -51,7 +51,15 @@ fn execute_create_patient(
     ACCESS.save(deps.storage, patient_id, &vec![info.sender.clone()])?;
     PATIENT_COUNT.save(deps.storage, &patient_id)?;
 
+    let message = format!(
+    "Patient {} named {} has been created by {}",
+    patient_id,
+    patient.name,
+    info.sender
+    );
+
     Ok(Response::new()
+        .set_data(message.as_bytes())
         .add_attribute("action", "create_patient")
         .add_attribute("patient_id", patient_id.to_string()))
 }
@@ -116,12 +124,20 @@ fn execute_get_patient(deps: DepsMut, info: MessageInfo, patient_id: u64) -> Std
     }
 
     // Pour l’instant on renvoie en clair dans les attributs (logs)
-    Ok(Response::new()
+    /*Ok(Response::new()
         .add_attribute("action", "get_patient")
         .add_attribute("patient_id", patient_id.to_string())
         .add_attribute("name", patient.name)
         .add_attribute("age", patient.age.to_string())
-        .add_attribute("disease", patient.disease))
+        .add_attribute("disease", patient.disease))*/
+
+    // On renvoie directement le patient dans data
+    let data = to_binary(&patient)?;
+
+    Ok(Response::new()
+        .add_attribute("action", "get_patient")
+        .add_attribute("patient_id", patient_id.to_string())
+        .set_data(data))
 }
 
 // Aucune query publique (tout passe par execute pour l’auth)
